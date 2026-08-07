@@ -1,15 +1,15 @@
-package com.spring.learning.core.configuration;
+// package com.spring.learning.core.configuration;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+// import org.springframework.context.annotation.Bean;
+// import org.springframework.context.annotation.Configuration;
 
-import com.spring.learning.core.beans.GreetingService;
+// import com.spring.learning.core.beans.GreetingService;
 
-@Configuration
-public class AppConfig {
+// @Configuration
+// public class AppConfig {
     
-    @Bean
-    GreetingService greetingService (){
-        return new GreetingService();
-    }
-}
+//     @Bean
+//     GreetingService greetingService (){
+//         return new GreetingService();
+//     }
+// }

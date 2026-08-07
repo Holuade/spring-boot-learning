@@ -1,8 +1,8 @@
 package com.spring.learning.core.beans;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class NotificationService {
 
     private final GreetingService greetingService;
