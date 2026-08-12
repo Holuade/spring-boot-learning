@@ -2,10 +2,10 @@ package com.spring.learning.core.beans;
 
 import com.spring.learning.rest.dto.GreetingRequest;
 import com.spring.learning.rest.dto.GreetingResponse;
+import com.spring.learning.rest.exception.GreetingNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.stereotype.Service;
 
 @Service
@@ -36,7 +36,7 @@ public class GreetingService {
         return greetings.stream()
                 .filter(greeting -> greeting.id().equals(id))
                 .findFirst()
-                .orElse(null);
+                .orElseThrow(() -> new GreetingNotFoundException(id));
     }
 
     public boolean delete(Long id) {

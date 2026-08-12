@@ -1,7 +1,6 @@
 package com.spring.learning.rest.controller;
 
 import java.util.List;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,12 +10,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.learning.core.beans.GreetingService;
 import com.spring.learning.rest.dto.GreetingRequest;
 import com.spring.learning.rest.dto.GreetingResponse;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("api/v1/greetings")
@@ -27,11 +27,10 @@ public class GreetingController {
     public GreetingController(GreetingService greetingService) {
         this.greetingService = greetingService;
     }
-    
 
     @PostMapping
     public ResponseEntity<GreetingResponse> create(
-            @RequestBody GreetingRequest request) {
+            @Valid @RequestBody GreetingRequest request) {
 
         GreetingResponse response = greetingService.create(request);
 
@@ -52,10 +51,6 @@ public class GreetingController {
             @PathVariable Long id) {
 
         GreetingResponse greeting = greetingService.findById(id);
-
-        if (greeting == null) {
-            return ResponseEntity.notFound().build();
-        }
 
         return ResponseEntity.ok(greeting);
     }
