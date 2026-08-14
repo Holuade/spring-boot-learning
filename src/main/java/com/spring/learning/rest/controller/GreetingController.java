@@ -47,8 +47,7 @@ public class GreetingController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<GreetingResponse> findById(
-            @PathVariable Long id) {
+    public ResponseEntity<GreetingResponse> findById(@PathVariable Long id) {
 
         GreetingResponse greeting = greetingService.findById(id);
 
@@ -56,28 +55,17 @@ public class GreetingController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(
-            @PathVariable Long id) {
-
-        boolean deleted = greetingService.delete(id);
-
-        if (!deleted) {
-            return ResponseEntity.notFound().build();
-        }
-
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        greetingService.delete(id);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<GreetingResponse> update(
             @PathVariable Long id,
-            @RequestBody GreetingRequest request) {
+            @Valid @RequestBody GreetingRequest request) {
 
         GreetingResponse updated = greetingService.update(id, request);
-
-        if (updated == null) {
-            return ResponseEntity.notFound().build();
-        }
 
         return ResponseEntity.ok(updated);
     }
