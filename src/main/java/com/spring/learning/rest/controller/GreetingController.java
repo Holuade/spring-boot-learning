@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.learning.core.beans.GreetingService;
@@ -40,10 +41,12 @@ public class GreetingController {
     }
 
     @GetMapping
-    public ResponseEntity<List<GreetingResponse>> findAll() {
+    public ResponseEntity<List<GreetingResponse>> findAll( @RequestParam(required = false) String name) {
+        if (name == null) {
+             return ResponseEntity.ok(greetingService.findAll());
+        }
 
-        return ResponseEntity.ok(
-                greetingService.findAll());
+         return ResponseEntity.ok(greetingService.findByName(name));
     }
 
     @GetMapping("/{id}")

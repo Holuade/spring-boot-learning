@@ -9,6 +9,7 @@ import com.spring.learning.rest.dto.GreetingResponse;
 public interface GreetingRepository {
     Optional<GreetingResponse> findById(Long id);
     List<GreetingResponse> findAll();
+    List<GreetingResponse> findByName(String name);
     boolean deleteById(Long id);
     Optional<GreetingResponse> update(Long id, GreetingRequest request);
     GreetingResponse create(GreetingRequest request);

@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.stereotype.Repository;
+// import org.springframework.stereotype.Repository;
 
 import com.spring.learning.rest.dto.GreetingRequest;
 import com.spring.learning.rest.dto.GreetingResponse;
 
-@Repository
+// @Repository
 public class InMemoryGreetingRepository implements GreetingRepository {
 
     private final List<GreetingResponse> greetings = new ArrayList<>();
@@ -59,6 +59,13 @@ public class InMemoryGreetingRepository implements GreetingRepository {
         greetings.add(greeting);
 
         return greeting;
+    }
+
+    @Override
+    public List<GreetingResponse> findByName(String name) {
+        return greetings.stream()
+        .filter(greeting -> greeting.name().equalsIgnoreCase(name))
+        .toList();
     }
 
 }

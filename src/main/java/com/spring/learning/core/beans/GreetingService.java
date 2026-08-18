@@ -42,4 +42,9 @@ public class GreetingService {
         return greetingRepository.update(id, request)
                 .orElseThrow(() -> new GreetingNotFoundException(id));
     }
+
+     public List<GreetingResponse> findByName(String name) {
+        return greetingRepository.findByName(name);
+                
+    }
 }
